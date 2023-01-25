@@ -9,6 +9,12 @@ import com.demo.product.domain.service.ProductService;
 
 import javax.swing.JOptionPane;
 
+import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Nanang
@@ -196,10 +202,27 @@ public class DlgAddProduct extends javax.swing.JDialog
     {//GEN-HEADEREND:event_btnListActionPerformed
 
         ProductService prodSrv = new ProductService();
-        prodSrv.listProduct();        // TODO add your handling code here:
+        //prodSrv.listProduct();        // TODO add your handling code here:
+
+        try {
+            displayResultSet(prodSrv.listProduct());
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(ex.getSQLState());
+        }
+
     }//GEN-LAST:event_btnListActionPerformed
 
-    
+
+    // read result set and display it in jtable
+    public void displayResultSet(ResultSet rs) throws SQLException
+    {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        while (rs.next()) {
+            model.addRow(new Object[]{rs.getString("code"), rs.getString("name")});
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnList;

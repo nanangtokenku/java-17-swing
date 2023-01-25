@@ -1,0 +1,17 @@
+# NetBeans project files
+nbproject/
+build/
+dist/
+nbbuild/
+
+# Java class files
+*.class
+
+# NetBeans generated files
+nbactions.xml
+*.form
+*.java
+
+# IDE files
+.idea/
+*.iml

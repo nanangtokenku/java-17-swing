@@ -8,12 +8,9 @@ package com.demo.product.dao;
 import com.demo.db.DBConnection;
 import com.demo.product.domain.entity.Product;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
+import java.util.*;
 
 /**
  * @author Nanang, Irfin A
@@ -74,6 +71,26 @@ public class ProductDao
 
         return list;
     }
+    public List<Product> all() throws Exception
+    {
+        // SQL Select from table product
+        var sql = "SELECT * FROM product";
+
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        //stmt.setString(1, "%" + _name + "%");
+        ResultSet rs = stmt.executeQuery();
+
+        List<Product> list = new LinkedList<>();
+        while (rs.next()) {
+            Product p = new Product();
+            p.setCode(rs.getString("code"));
+            p.setName(rs.getString("name"));
+            list.add(p);
+        }
+        stmt.close();
+
+        return list;
+    }
 
     public Optional<Product> findByCode(String _code) throws Exception
     {
@@ -97,9 +114,10 @@ public class ProductDao
 
     public void listProduct()
     {
-        // list product service
+        // SQL Select from table product
+        var sql = "SELECT * FROM product";
+
         try {
-            var sql = "SELECT * FROM product";
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
 
@@ -112,5 +130,63 @@ public class ProductDao
         catch (Exception x) {
             x.printStackTrace(System.out);
         }
+    }
+
+    public void delete(String _code) throws Exception
+    {
+        // SQL Delete from table product
+        var sql = "DELETE FROM product WHERE code = ?";
+
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, _code);
+        stmt.executeUpdate();
+
+        stmt.close();
+    }
+
+    public DefaultTableModel buildTableModel(ResultSet rs)
+            throws SQLException {
+
+        ResultSetMetaData metaData = rs.getMetaData();
+
+        // names of columns
+        Vector<String> columnNames = new Vector<String>();
+        int columnCount = metaData.getColumnCount();
+        for (int column = 1; column <= columnCount; column++) {
+            columnNames.add(metaData.getColumnName(column));
+        }
+
+        // data of the table
+        Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+        while (rs.next()) {
+            Vector<Object> vector = new Vector<Object>();
+            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                vector.add(rs.getObject(columnIndex));
+            }
+            data.add(vector);
+        }
+
+        return new DefaultTableModel(data, columnNames);
+
+    }
+
+    public ResultSet getQueryResult() {
+        // SQL Select from table product
+        var sql = "SELECT * FROM product";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+             while (rs.next()) {
+                System.out.println("Code: " + rs.getString("code"));
+                System.out.println("Name: " + rs.getString("name"));
+            }
+            return rs;
+        }
+        catch (Exception x) {
+            x.printStackTrace(System.out);
+        }
+
+        return null;
     }
 }

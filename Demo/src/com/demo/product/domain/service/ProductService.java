@@ -9,6 +9,7 @@ import com.demo.product.dao.ProductDao;
 import com.demo.product.domain.entity.Product;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 
 /**
  *
@@ -45,14 +46,14 @@ public class ProductService
     }
 
     //list product service
-public void listProduct() throws RuntimeException
+public ResultSet listProduct() throws RuntimeException
     {
         Connection con = null;
         try {
             con = DBConnection.getConnection();
 
             ProductDao dao = new ProductDao(con);
-            dao.listProduct();
+            return dao.getQueryResult();
 
             // Commit TX
             //con.commit();
@@ -71,8 +72,10 @@ public void listProduct() throws RuntimeException
             }
             throw new RuntimeException(x);
         }
+        //return null;
     }
 
+    //create return list of product
 
 
 
