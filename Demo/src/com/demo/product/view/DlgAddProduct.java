@@ -208,6 +208,7 @@ public class DlgAddProduct extends javax.swing.JDialog
             displayResultSet(prodSrv.listProduct());
         }
         catch (SQLException ex) {
+            System.out.println("Tidak ditemukan Data");
             Logger.getLogger(ex.getSQLState());
         }
 

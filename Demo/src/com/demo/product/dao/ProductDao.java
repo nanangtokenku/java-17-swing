@@ -177,13 +177,14 @@ public class ProductDao
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
-             while (rs.next()) {
-                System.out.println("Code: " + rs.getString("code"));
-                System.out.println("Name: " + rs.getString("name"));
-            }
+//             while (rs.next()) {
+//                System.out.println("Code: " + rs.getString("code"));
+//                System.out.println("Name: " + rs.getString("name"));
+//            }
             return rs;
         }
         catch (Exception x) {
+            System.out.println("Data Tidak Ada");
             x.printStackTrace(System.out);
         }
 
