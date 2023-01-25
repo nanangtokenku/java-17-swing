@@ -27,7 +27,7 @@ public class ProductService
             
             // Commit TX
             con.commit();
-}
+        }
         catch (Exception x)
         {
             x.printStackTrace(System.out);
@@ -43,4 +43,40 @@ public class ProductService
             throw new RuntimeException(x);
         }
     }
+
+    //list product service
+public void listProduct() throws RuntimeException
+    {
+        Connection con = null;
+        try {
+            con = DBConnection.getConnection();
+
+            ProductDao dao = new ProductDao(con);
+            dao.listProduct();
+
+            // Commit TX
+            //con.commit();
+        }
+        catch (Exception x)
+        {
+            x.printStackTrace(System.out);
+
+            // Rollback TX
+            try {
+                //if (con != null)
+                    //con.rollback();
+            }
+            catch (Exception y) {
+                throw new RuntimeException(y);
+            }
+            throw new RuntimeException(x);
+        }
+    }
+
+
+
+
+
+
+
 }

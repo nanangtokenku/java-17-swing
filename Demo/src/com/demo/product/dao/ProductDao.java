@@ -94,4 +94,23 @@ public class ProductDao
 
         return Optional.ofNullable(p);
     }
+
+    public void listProduct()
+    {
+        // list product service
+        try {
+            var sql = "SELECT * FROM product";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                System.out.println("Code: " + rs.getString("code"));
+                System.out.println("Name: " + rs.getString("name"));
+            }
+            stmt.close();
+        }
+        catch (Exception x) {
+            x.printStackTrace(System.out);
+        }
+    }
 }
