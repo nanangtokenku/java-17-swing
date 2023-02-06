@@ -62,6 +62,7 @@ public class DlgAddProduct extends javax.swing.JDialog
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnList = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("[Simple Demo] Add Product");
@@ -124,6 +125,15 @@ public class DlgAddProduct extends javax.swing.JDialog
             }
         });
 
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,7 +151,9 @@ public class DlgAddProduct extends javax.swing.JDialog
                                 .addComponent(lblCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnSave)
-                                .addGap(314, 314, 314)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDelete)
+                                .addGap(233, 233, 233)
                                 .addComponent(btnList))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -151,9 +163,7 @@ public class DlgAddProduct extends javax.swing.JDialog
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtNama)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtKode, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                                    .addComponent(txtKode, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
@@ -175,7 +185,8 @@ public class DlgAddProduct extends javax.swing.JDialog
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave)
                     .addComponent(lblCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnList))
+                    .addComponent(btnList)
+                    .addComponent(btnDelete))
                 .addGap(12, 12, 12))
         );
 
@@ -232,6 +243,13 @@ public class DlgAddProduct extends javax.swing.JDialog
            // TODO add your handling code here:
     }//GEN-LAST:event_formFocusGained
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnDeleteActionPerformed
+    {//GEN-HEADEREND:event_btnDeleteActionPerformed
+        // 
+        System.out.println(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+        
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
 
     // read result set and display it in jtable
     public void displayResultSet(ResultSet rs) throws SQLException
@@ -244,6 +262,7 @@ public class DlgAddProduct extends javax.swing.JDialog
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnList;
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
