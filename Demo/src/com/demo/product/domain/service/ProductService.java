@@ -77,7 +77,34 @@ public ResultSet listProduct() throws RuntimeException
 
     //create return list of product
 
+    // create delete product service
+    public void deleteProduct(String id) throws RuntimeException
+    {
+        Connection con = null;
+        try {
+            con = DBConnection.getConnection();
 
+            ProductDao dao = new ProductDao(con);
+            dao.delete(id);
+
+            // Commit TX
+            con.commit();
+        }
+        catch (Exception x)
+        {
+            x.printStackTrace(System.out);
+
+            // Rollback TX
+            try {
+                if (con != null)
+                    con.rollback();
+            }
+            catch (Exception y) {
+                throw new RuntimeException(y);
+            }
+            throw new RuntimeException(x);
+        }
+    }
 
 
 
