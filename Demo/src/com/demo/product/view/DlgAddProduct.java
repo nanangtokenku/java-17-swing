@@ -246,8 +246,18 @@ public class DlgAddProduct extends javax.swing.JDialog
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnDeleteActionPerformed
     {//GEN-HEADEREND:event_btnDeleteActionPerformed
         // 
-        System.out.println(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+        var id = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString();
+        System.out.println(id);
         
+        ProductService prodService = new ProductService();
+        try {
+            prodService.deleteProduct(id);
+            JOptionPane.showMessageDialog(this, "Data Terhapus", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Data gagal Dihapus", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
 
