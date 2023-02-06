@@ -277,6 +277,19 @@ public class DlgAddProduct extends javax.swing.JDialog
     {//GEN-HEADEREND:event_btnEditActionPerformed
         var id = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString();
         System.out.println(id);
+        ProductService prodSrv = new ProductService();
+        try {
+            
+            Product p = new Product();
+            p.setCode(txtKode.getText());
+            p.setName(txtNama.getText());
+            prodSrv.updateProduct(p, p);
+            JOptionPane.showMessageDialog(this, "Data Telah terupdate");
+        } catch (Exception ex) {
+            
+            JOptionPane.showMessageDialog(this, "Data Gagal di Update");
+        
+        }
     }//GEN-LAST:event_btnEditActionPerformed
 
 
