@@ -190,4 +190,9 @@ public class ProductDao
 
         return null;
     }
+
+    public ResultSet search(String _id)
+    {
+        return null;
+    }
 }

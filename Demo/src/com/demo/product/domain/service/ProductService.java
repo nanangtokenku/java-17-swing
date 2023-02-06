@@ -106,7 +106,64 @@ public ResultSet listProduct() throws RuntimeException
         }
     }
 
+//function update product by code
+    public void updateProduct(Product _oldProduct, Product _newProduct) throws RuntimeException
+    {
+        Connection con = null;
+        try {
+            con = DBConnection.getConnection();
 
+            ProductDao dao = new ProductDao(con);
+            dao.update(_oldProduct, _newProduct);
+
+            // Commit TX
+            con.commit();
+        }
+        catch (Exception x)
+        {
+            x.printStackTrace(System.out);
+
+            // Rollback TX
+            try {
+                if (con != null)
+                    con.rollback();
+            }
+            catch (Exception y) {
+                throw new RuntimeException(y);
+            }
+            throw new RuntimeException(x);
+        }
+    }
+
+    //function search product
+    public ResultSet searchProduct(String id) throws RuntimeException
+    {
+        Connection con = null;
+        try {
+            con = DBConnection.getConnection();
+
+            ProductDao dao = new ProductDao(con);
+            return dao.search(id);
+
+            // Commit TX
+            //con.commit();
+        }
+        catch (Exception x)
+        {
+            x.printStackTrace(System.out);
+
+            // Rollback TX
+            try {
+                //if (con != null)
+                    //con.rollback();
+            }
+            catch (Exception y) {
+                throw new RuntimeException(y);
+            }
+            throw new RuntimeException(x);
+        }
+        //return null;
+    }
 
 
 }
