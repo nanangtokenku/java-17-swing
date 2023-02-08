@@ -117,6 +117,13 @@ public class DlgAddProduct extends javax.swing.JDialog
                 "Code", "Name"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         btnList.setText("Show Product Owner");
@@ -304,6 +311,13 @@ public class DlgAddProduct extends javax.swing.JDialog
         
         }
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jTable1MouseClicked
+    {//GEN-HEADEREND:event_jTable1MouseClicked
+        //
+        var id = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString();
+        System.out.println(id);
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // read result set and display it in jtable
