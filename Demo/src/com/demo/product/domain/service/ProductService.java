@@ -74,6 +74,35 @@ public ResultSet listProduct() throws RuntimeException
         }
         //return null;
     }
+    //list product service
+    public ResultSet listProductSearch(String cari) throws RuntimeException
+    {
+        Connection con = null;
+        try {
+            con = DBConnection.getConnection();
+
+            ProductDao dao = new ProductDao(con);
+            return dao.getQueryResultWithSearch(cari);
+
+            // Commit TX
+            //con.commit();
+        }
+        catch (Exception x)
+        {
+            x.printStackTrace(System.out);
+
+            // Rollback TX
+            try {
+                //if (con != null)
+                    //con.rollback();
+            }
+            catch (Exception y) {
+                throw new RuntimeException(y);
+            }
+            throw new RuntimeException(x);
+        }
+        //return null;
+    }
 
     //create return list of product
 

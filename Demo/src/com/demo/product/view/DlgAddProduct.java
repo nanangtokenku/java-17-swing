@@ -154,6 +154,13 @@ public class DlgAddProduct extends javax.swing.JDialog
         });
 
         jButton1.setText("Search");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -318,6 +325,24 @@ public class DlgAddProduct extends javax.swing.JDialog
         var id = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString();
         System.out.println(id);
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        
+        var cari = txtSearch.getText();
+        System.out.println(cari);
+       
+        ProductService prodSrv = new ProductService();
+        
+        try {
+            displayResultSet(prodSrv.listProductSearch(cari));
+        }
+        catch (SQLException ex) {
+            System.out.println("Tidak ditemukan Data");
+            Logger.getLogger(ex.getSQLState());
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // read result set and display it in jtable

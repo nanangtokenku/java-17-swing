@@ -191,6 +191,27 @@ public class ProductDao
         return null;
     }
 
+    public ResultSet getQueryResultWithSearch(String cari) {
+        // SQL Select from table product
+        var sql = "SELECT * FROM product WHERE name LIKE '" + cari + "%'";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+//             while (rs.next()) {
+//                System.out.println("Code: " + rs.getString("code"));
+//                System.out.println("Name: " + rs.getString("name"));
+//            }
+            return rs;
+        }
+        catch (Exception x) {
+            System.out.println("Data Tidak Ada");
+            x.printStackTrace(System.out);
+        }
+
+        return null;
+    }
+
     public ResultSet search(String _id)
     {
         return null;
