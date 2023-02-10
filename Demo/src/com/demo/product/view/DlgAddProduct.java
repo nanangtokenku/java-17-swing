@@ -323,6 +323,9 @@ public class DlgAddProduct extends javax.swing.JDialog
     {//GEN-HEADEREND:event_jTable1MouseClicked
         //
         var id = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString();
+        var nama = jTable1.getValueAt(jTable1.getSelectedRow(),1).toString();
+        txtKode.setText(id);
+        txtNama.setText(nama);
         System.out.println(id);
     }//GEN-LAST:event_jTable1MouseClicked
 
