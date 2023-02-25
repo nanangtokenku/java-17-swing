@@ -39,7 +39,7 @@ public class DBConnection
             Class.forName("org.postgresql.Driver");
 
             // Buat koneksi ke database
-            con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "99");
+            con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/price", "price_dba", "Sembilan9");
             con.setAutoCommit(false);
         }
 

@@ -5,7 +5,7 @@
 package com.demo.product;
 
 import com.demo.product.view.DlgAddProduct;
-import com.formdev.flatlaf.FlatDarkLaf;
+//import com.formdev.flatlaf.FlatDarkLaf;
 
 /**
  *
@@ -46,12 +46,12 @@ public class MainApp
         //</editor-fold>
 
         // Set FlatLaf Look and Feel
-        try {
-            javax.swing.UIManager.setLookAndFeel(new FlatDarkLaf());
-        }
-        catch (Exception ex) {
-            ex.printStackTrace(System.out);
-        }
+//        try {
+//            javax.swing.UIManager.setLookAndFeel(new FlatDarkLaf());
+//        }
+//        catch (Exception ex) {
+//            ex.printStackTrace(System.out);
+//        }
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable()
